@@ -30,5 +30,19 @@ namespace AllSpice.Repositories
             }).ToList();
             return recipes;
         }
+
+        internal Recipe Create(Recipe newRecipe)
+        {
+            string sql = @"
+         INSERT INTO recipes
+         (picture, title, subtitle, category, creatorId)
+         VALUES
+         (@picture, @title, @subtitle, @category, @creatorId);
+         SELECT LAST_INSERT_ID();
+         ";
+            int id = _db.ExecuteScalar<int>(sql, newRecipe);
+            newRecipe.id = id;
+            return newRecipe;
+        }
     }
 }

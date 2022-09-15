@@ -16,5 +16,10 @@ namespace AllSpice.Services
         {
             return _recipesRepo.GetAll();
         }
+
+        internal Recipe Create(Recipe newRecipe)
+        {
+            return _recipesRepo.Create(newRecipe);
+        }
     }
 }
