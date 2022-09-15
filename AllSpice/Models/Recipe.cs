@@ -1,6 +1,6 @@
 namespace AllSpice.Models
 {
-    public class Recipes
+    public class Recipe
     {
         public int id { get; set; }
         public string picture { get; set; }

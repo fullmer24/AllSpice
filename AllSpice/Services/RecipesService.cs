@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using AllSpice.Models;
 using AllSpice.Repositories;
 
 namespace AllSpice.Services
@@ -10,9 +12,9 @@ namespace AllSpice.Services
             _recipesRepo = recipesRepo;
         }
 
-
-
-
-
+        internal List<Recipe> GetAll()
+        {
+            return _recipesRepo.GetAll();
+        }
     }
 }

@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using AllSpice.Models;
 using AllSpice.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +15,19 @@ namespace AllSpice.Controllers
         {
             _recipesService = recipesService;
         }
-
+        [HttpGet]
+        public ActionResult<List<Recipe>> GetAll()
+        {
+            try
+            {
+                List<Recipe> recipes = _recipesService.GetAll();
+                return Ok(recipes);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
 
 
 
