@@ -18,7 +18,7 @@ namespace AllSpice.Repositories
         {
             string sql = @"
            SELECT
-           p.*,
+           r.*,
            a.*
            FROM recipes r
            JOIN accounts a ON a.id = r.creatorId;
