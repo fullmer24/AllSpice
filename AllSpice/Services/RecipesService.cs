@@ -39,5 +39,15 @@ namespace AllSpice.Services
             _recipesRepo.Delete(id);
             return $"Deleted {recipe.title}";
         }
+
+        internal Recipe Update(Recipe update)
+        {
+            Recipe original = GetById(update.id);
+            original.picture = update.picture ?? original.picture;
+            original.title = update.title ?? original.title;
+            original.subtitle = update.subtitle ?? original.subtitle;
+            original.category = update.category ?? original.category;
+            return _recipesRepo.Update(original);
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -63,6 +64,21 @@ namespace AllSpice.Repositories
             return recipe;
         }
 
-
+        internal Recipe Update(Recipe recipeData)
+        {
+            string sql = @"
+            UPDATE recipes SET
+                picture = @picture,
+                title = @title,
+                subtitle = @subtitle,
+                category = @category,
+            ";
+            int rowsAffected = _db.Execute(sql, recipeData);
+            if (rowsAffected == 0)
+            {
+                throw new Exception("unable to edit recipe");
+            }
+            return recipeData;
+        }
     }
 }

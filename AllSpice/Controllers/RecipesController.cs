@@ -60,7 +60,6 @@ namespace AllSpice.Controllers
                 return BadRequest(e.Message);
             }
         }
-
         [HttpDelete("{id}")]
         [Authorize]
         public ActionResult<string> Delete(int id)
@@ -75,6 +74,20 @@ namespace AllSpice.Controllers
             }
         }
 
+        [HttpPut]
+        [Authorize]
+        public ActionResult<Recipe> Update(int id, [FromBody] Recipe update)
+        {
+            try
+            {
+                update.id = id;
+                return Ok(_recipesService.Update(update));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
     }
 }
