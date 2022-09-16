@@ -27,10 +27,3 @@ CREATE TABLE IF NOT EXISTS ingredients(
   FOREIGN KEY (recipeId) REFERENCES recipes (id)
 )default charset utf8 COMMENT '';
 
-INSERT INTO ingredients
-(name, quantity, recipeId)
-VALUES
-('chocolate', 100, 3);
-SELECT * FROM ingredients;
-DELETE FROM ingredients WHERE id = 1;
-
