@@ -31,7 +31,6 @@ namespace AllSpice.Controllers
                 return BadRequest(e.Message);
             }
         }
-
         [HttpPost]
         [Authorize]
         public async Task<ActionResult<Recipe>> Create([FromBody] Recipe newRecipe)
@@ -49,6 +48,20 @@ namespace AllSpice.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [HttpGet("{id}")]
+        public ActionResult<Recipe> GetById(int id)
+        {
+            try
+            {
+                return Ok(_recipesService.GetById(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
 
 
     }
