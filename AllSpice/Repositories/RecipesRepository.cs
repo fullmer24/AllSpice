@@ -44,5 +44,17 @@ namespace AllSpice.Repositories
             newRecipe.id = id;
             return newRecipe;
         }
+
+        internal Recipe GetById(int id)
+        {
+            string sql = @"
+            SELECT * FROM recipes
+            WHERE id = @id;
+            ";
+            Recipe recipe = _db.Query<Recipe>(sql, new { id }).FirstOrDefault();
+            return recipe;
+        }
+
+
     }
 }

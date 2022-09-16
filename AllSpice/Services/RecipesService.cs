@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using AllSpice.Models;
 using AllSpice.Repositories;
@@ -20,6 +21,16 @@ namespace AllSpice.Services
         internal Recipe Create(Recipe newRecipe)
         {
             return _recipesRepo.Create(newRecipe);
+        }
+
+        internal Recipe GetById(int id)
+        {
+            Recipe recipe = _recipesRepo.GetById(id);
+            if (recipe == null)
+            {
+                throw new Exception("no recipe by that Id");
+            }
+            return recipe;
         }
     }
 }
