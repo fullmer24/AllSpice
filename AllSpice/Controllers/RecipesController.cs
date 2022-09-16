@@ -62,10 +62,11 @@ namespace AllSpice.Controllers
         }
         [HttpDelete("{id}")]
         [Authorize]
-        public ActionResult<string> Delete(int id)
+        public async Task<ActionResult<string>> Delete(int id)
         {
             try
             {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
                 return Ok(_recipesService.Delete(id));
             }
             catch (Exception e)
@@ -74,7 +75,7 @@ namespace AllSpice.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         [Authorize]
         public ActionResult<Recipe> Update(int id, [FromBody] Recipe update)
         {

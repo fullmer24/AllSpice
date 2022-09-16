@@ -71,7 +71,8 @@ namespace AllSpice.Repositories
                 picture = @picture,
                 title = @title,
                 subtitle = @subtitle,
-                category = @category,
+                category = @category
+            WHERE id = @id
             ";
             int rowsAffected = _db.Execute(sql, recipeData);
             if (rowsAffected == 0)
