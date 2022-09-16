@@ -32,5 +32,12 @@ namespace AllSpice.Services
             }
             return recipe;
         }
+
+        internal string Delete(int id)
+        {
+            Recipe recipe = GetById(id);
+            _recipesRepo.Delete(id);
+            return $"Deleted {recipe.title}";
+        }
     }
 }
