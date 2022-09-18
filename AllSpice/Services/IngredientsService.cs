@@ -11,10 +11,14 @@ namespace AllSpice.Services
         {
             _ingredientsRepo = ingredientsRepo;
         }
-
         internal List<Ingredient> GetAll()
         {
             return _ingredientsRepo.GetAll();
+        }
+
+        internal Ingredient Create(Ingredient newIngredient)
+        {
+            return _ingredientsRepo.Create(newIngredient);
         }
     }
 }
