@@ -1,12 +1,20 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AllSpice.Models;
+using AllSpice.Repositories;
 
 namespace AllSpice.Services
 {
     public class IngredientsService
     {
-        
+        private readonly IngredientsRepository _ingredientsRepo;
+        public IngredientsService(IngredientsRepository ingredientsRepo)
+        {
+            _ingredientsRepo = ingredientsRepo;
+        }
+
+        internal List<Ingredient> GetAll()
+        {
+            return _ingredientsRepo.GetAll();
+        }
     }
 }

@@ -24,6 +24,8 @@ CREATE TABLE IF NOT EXISTS ingredients(
   name VARCHAR(255) NOT NULL,
   quantity INT NOT NULL,
   recipeId INT NOT NULL,
+  creatorId VARCHAR(255) NOT NULL,
+  FOREIGN KEY (creatorId) REFERENCES accounts (id),
   FOREIGN KEY (recipeId) REFERENCES recipes (id)
 )default charset utf8 COMMENT '';
 
