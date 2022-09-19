@@ -14,9 +14,12 @@ namespace AllSpice.Controllers
     public class RecipesController : ControllerBase
     {
         private readonly RecipesService _recipesService;
-        public RecipesController(RecipesService recipesService)
+        private readonly IngredientsService _ingredientsService;
+
+        public RecipesController(RecipesService recipesService, IngredientsService ingredientsService)
         {
             _recipesService = recipesService;
+            _ingredientsService = ingredientsService;
         }
         [HttpGet]
         public ActionResult<List<Recipe>> GetAll()
@@ -74,7 +77,6 @@ namespace AllSpice.Controllers
                 return BadRequest(e.Message);
             }
         }
-
         [HttpPut("{id}")]
         [Authorize]
         public ActionResult<Recipe> Update(int id, [FromBody] Recipe update)
@@ -90,5 +92,18 @@ namespace AllSpice.Controllers
             }
         }
 
+        [HttpGet("{id}/ingredients")]
+        public ActionResult<List<Ingredient>> GetIngredientByRecipeId(int id)
+        {
+            try
+            {
+                List<Ingredient> ingredients = _ingredientsService.GetIngredientsByRecipeId(id);
+                return Ok(ingredients);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

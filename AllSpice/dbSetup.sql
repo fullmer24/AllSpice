@@ -29,3 +29,9 @@ CREATE TABLE IF NOT EXISTS ingredients(
   FOREIGN KEY (recipeId) REFERENCES recipes (id)
 )default charset utf8 COMMENT '';
 
+SELECT 
+r.id,
+i.*
+FROM ingredients i
+JOIN recipes r ON r.id = i.recipeId
+WHERE r.id = 3;

@@ -36,8 +36,14 @@ namespace AllSpice.Services
             return $"Deleted {ingredient.Name}";
         }
 
-
-
-
+        internal List<Ingredient> GetIngredientsByRecipeId(int id)
+        {
+            List<Ingredient> ingredient = _ingredientsRepo.GetIngredientByRecipeId(id);
+            if (ingredient == null)
+            {
+                throw new Exception("no ingredient by that Id");
+            }
+            return ingredient;
+        }
     }
 }
