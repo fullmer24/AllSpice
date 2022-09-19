@@ -28,10 +28,19 @@ CREATE TABLE IF NOT EXISTS ingredients(
   FOREIGN KEY (creatorId) REFERENCES accounts (id),
   FOREIGN KEY (recipeId) REFERENCES recipes (id)
 )default charset utf8 COMMENT '';
+SELECT * FROM ingredients;
 
-SELECT 
-r.id,
-i.*
-FROM ingredients i
-JOIN recipes r ON r.id = i.recipeId
-WHERE r.id = 3;
+CREATE TABLE IF NOT EXISTS steps(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  position INT NOT NULL,
+  body VARCHAR(255) NOT NULL,
+  recipeId INT NOT NULL,
+  creatorId VARCHAR(255) NOT NULL,
+  FOREIGN KEY (creatorId) REFERENCES accounts (id),
+  FOREIGN KEY (recipeId) REFERENCES recipes (id)
+)default charset utf8 COMMENT '';
+
+SELECT * FROM steps;
+
+
+     
