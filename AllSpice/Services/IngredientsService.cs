@@ -29,6 +29,13 @@ namespace AllSpice.Services
             }
             return ingredient;
         }
+        internal string Delete(int id)
+        {
+            Ingredient ingredient = GetById(id);
+            _ingredientsRepo.Delete(id);
+            return $"Deleted {ingredient.Name}";
+        }
+
 
 
 
