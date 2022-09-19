@@ -29,7 +29,6 @@ namespace AllSpice.Repositories
             }).ToList();
             return ingredients;
         }
-
         internal Ingredient GetById(int id)
         {
             string sql = @"
@@ -39,7 +38,6 @@ namespace AllSpice.Repositories
             Ingredient ingredient = _db.Query<Ingredient>(sql, new { id }).FirstOrDefault();
             return ingredient;
         }
-
         internal Ingredient Create(Ingredient newIngredient)
         {
             string sql = @"

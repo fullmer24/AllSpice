@@ -20,7 +20,6 @@ namespace AllSpice.Services
         {
             return _ingredientsRepo.Create(newIngredient);
         }
-
         internal Ingredient GetById(int id)
         {
             Ingredient ingredient = _ingredientsRepo.GetById(id);

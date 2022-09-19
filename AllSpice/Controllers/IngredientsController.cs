@@ -48,7 +48,6 @@ namespace AllSpice.Controllers
                 return BadRequest(e.Message);
             }
         }
-
         [HttpGet("{id}")]
         [Authorize]
         public ActionResult<Ingredient> GetById(int id)
