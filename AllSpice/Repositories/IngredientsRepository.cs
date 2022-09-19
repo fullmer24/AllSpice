@@ -53,7 +53,6 @@ namespace AllSpice.Repositories
             SELECT 
             i.*,
             r.id
-            
             FROM ingredients i
             JOIN recipes r ON r.id = i.recipeId
             WHERE i.recipeId = @id;

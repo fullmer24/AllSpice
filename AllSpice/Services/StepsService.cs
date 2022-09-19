@@ -1,12 +1,26 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AllSpice.Models;
+using AllSpice.Repositories;
 
 namespace AllSpice.Services
 {
     public class StepsService
     {
-        
+        private readonly StepsRepository _stepsRepo;
+
+        public StepsService(StepsRepository stepsRepo)
+        {
+            _stepsRepo = stepsRepo;
+        }
+        internal List<Steps> GetStepsByRecipeId(int id)
+        {
+            List<Steps> steps = _stepsRepo.GetStepsByRecipeId(id);
+            if (steps == null)
+            {
+                throw new Exception("no steps by that Id");
+            }
+            return steps;
+        }
     }
 }

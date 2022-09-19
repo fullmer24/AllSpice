@@ -15,11 +15,13 @@ namespace AllSpice.Controllers
     {
         private readonly RecipesService _recipesService;
         private readonly IngredientsService _ingredientsService;
+        private readonly StepsService _stepsService;
 
-        public RecipesController(RecipesService recipesService, IngredientsService ingredientsService)
+        public RecipesController(RecipesService recipesService, IngredientsService ingredientsService, StepsService stepsService)
         {
             _recipesService = recipesService;
             _ingredientsService = ingredientsService;
+            _stepsService = stepsService;
         }
         [HttpGet]
         public ActionResult<List<Recipe>> GetAll()
@@ -99,6 +101,19 @@ namespace AllSpice.Controllers
             {
                 List<Ingredient> ingredients = _ingredientsService.GetIngredientsByRecipeId(id);
                 return Ok(ingredients);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        [HttpGet("{id}/steps")]
+        public ActionResult<List<Steps>> GetStepsByRecipeId(int id)
+        {
+            try
+            {
+                List<Steps> steps = _stepsService.GetStepsByRecipeId(id);
+                return Ok(steps);
             }
             catch (Exception e)
             {
