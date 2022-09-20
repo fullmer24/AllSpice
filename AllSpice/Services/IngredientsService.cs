@@ -45,5 +45,16 @@ namespace AllSpice.Services
             }
             return ingredient;
         }
+        internal Ingredient Update(Ingredient update, string userId)
+        {
+            Ingredient original = GetById(update.Id);
+            if (original.creatorId != userId)
+            {
+                throw new Exception("You can not edit that ingredient");
+            }
+            original.Name = update.Name ?? original.Name;
+            original.Quantity = update.Quantity ?? original.Quantity;
+            return _ingredientsRepo.Update(original);
+        }
     }
 }

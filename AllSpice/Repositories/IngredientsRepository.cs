@@ -64,7 +64,17 @@ namespace AllSpice.Repositories
             }, new { id }).ToList();
             return ingredient;
         }
-
+        internal Ingredient Update(Ingredient ingredientData)
+        {
+            string sql = @"
+            UPDATE ingredients SET
+            name = @name,
+            quantity = @quantity
+            WHERE id = @id;
+            ";
+            _db.Execute(sql, ingredientData);
+            return ingredientData;
+        }
         internal Ingredient Create(Ingredient newIngredient)
         {
             string sql = @"
