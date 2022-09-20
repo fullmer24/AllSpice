@@ -49,7 +49,19 @@ namespace AllSpice.Controllers
                 return BadRequest(e.Message);
             }
         }
-
+        [HttpGet("{id}")]
+        [Authorize]
+        public ActionResult<Steps> GetById(int id)
+        {
+            try
+            {
+                return Ok(_stepsService.GetById(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
     }
 }

@@ -32,5 +32,15 @@ namespace AllSpice.Services
         {
             return _stepsRepo.Create(newStep);
         }
+
+        internal Steps GetById(int id)
+        {
+            Steps steps = _stepsRepo.GetById(id);
+            if (steps == null)
+            {
+                throw new Exception("no steps by that Id");
+            }
+            return steps;
+        }
     }
 }

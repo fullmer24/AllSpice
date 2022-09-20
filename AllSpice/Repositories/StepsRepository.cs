@@ -45,6 +45,16 @@ namespace AllSpice.Repositories
             return newStep;
         }
 
+        internal Steps GetById(int id)
+        {
+            string sql = @"
+            SELECT * FROM steps
+            WHERE id = @id
+            ";
+            Steps steps = _db.Query<Steps>(sql, new { id }).FirstOrDefault();
+            return steps;
+        }
+
         internal List<Steps> GetAll()
         {
             string sql = @"
