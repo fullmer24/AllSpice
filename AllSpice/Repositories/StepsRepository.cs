@@ -8,8 +8,8 @@ namespace AllSpice.Repositories
 {
     public class StepsRepository
     {
-        private readonly StepsRepository
-        public StepsRepository(IDbConnection _db)
+        private readonly IDbConnection _db;
+        public StepsRepository(IDbConnection db)
         {
             _db = db;
         }
@@ -25,10 +25,13 @@ namespace AllSpice.Repositories
             ";
             List<Steps> steps = _db.Query<Steps, Recipe, Steps>(sql, (steps, recipe) =>
             {
-                steps.recipeId = recipe.id;
+                steps.RecipeId = recipe.id;
                 return steps;
             }, new { id }).ToList();
             return steps;
         }
+
+
+
     }
 }
