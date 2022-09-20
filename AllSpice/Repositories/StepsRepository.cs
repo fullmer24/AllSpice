@@ -31,6 +31,20 @@ namespace AllSpice.Repositories
             return steps;
         }
 
+        internal Steps Create(Steps newStep)
+        {
+            string sql = @"
+            INSERT INTO steps
+            (position, body, recipeId, CreatorId)
+            VALUES
+            (@position, @body, @recipeId, @CreatorId);
+            SELECT LAST_INSERT_ID();
+            ";
+            int id = _db.ExecuteScalar<int>(sql, newStep);
+            newStep.Id = id;
+            return newStep;
+        }
+
         internal List<Steps> GetAll()
         {
             string sql = @"

@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using AllSpice.Models;
 using AllSpice.Services;
+using CodeWorks.Auth0Provider;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AllSpice.Controllers
@@ -12,12 +15,10 @@ namespace AllSpice.Controllers
     {
         private readonly StepsService
         _stepsService;
-
         public StepsController(StepsService stepsService)
         {
             _stepsService = stepsService;
         }
-
         [HttpGet]
         public ActionResult<List<StepsController>> GetAll()
         {
@@ -31,7 +32,23 @@ namespace AllSpice.Controllers
                 return BadRequest(e.Message);
             }
         }
-
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult<Steps>> Create([FromBody] Steps newStep)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                newStep.CreatorId = userInfo.Id;
+                Steps steps = _stepsService.Create(newStep);
+                steps.Creator = userInfo;
+                return Ok(steps);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
 
     }

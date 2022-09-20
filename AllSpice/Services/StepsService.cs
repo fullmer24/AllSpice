@@ -27,5 +27,10 @@ namespace AllSpice.Services
         {
             return _stepsRepo.GetAll();
         }
+
+        internal Steps Create(Steps newStep)
+        {
+            return _stepsRepo.Create(newStep);
+        }
     }
 }
