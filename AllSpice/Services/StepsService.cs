@@ -22,17 +22,14 @@ namespace AllSpice.Services
             }
             return steps;
         }
-
         internal List<Steps> GetAll()
         {
             return _stepsRepo.GetAll();
         }
-
         internal Steps Create(Steps newStep)
         {
             return _stepsRepo.Create(newStep);
         }
-
         internal Steps GetById(int id)
         {
             Steps steps = _stepsRepo.GetById(id);
@@ -41,6 +38,12 @@ namespace AllSpice.Services
                 throw new Exception("no steps by that Id");
             }
             return steps;
+        }
+        internal string Delete(int id)
+        {
+            Steps steps = GetById(id);
+            _stepsRepo.Delete(id);
+            return $"Deleted {steps.Body}";
         }
     }
 }

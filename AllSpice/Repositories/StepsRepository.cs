@@ -30,7 +30,6 @@ namespace AllSpice.Repositories
             }, new { id }).ToList();
             return steps;
         }
-
         internal Steps Create(Steps newStep)
         {
             string sql = @"
@@ -44,7 +43,13 @@ namespace AllSpice.Repositories
             newStep.Id = id;
             return newStep;
         }
-
+        internal void Delete(int id)
+        {
+            string sql = @"
+            DELETE FROM steps WHERE id = @id
+            ";
+            _db.Execute(sql, new { id });
+        }
         internal Steps GetById(int id)
         {
             string sql = @"
@@ -54,7 +59,6 @@ namespace AllSpice.Repositories
             Steps steps = _db.Query<Steps>(sql, new { id }).FirstOrDefault();
             return steps;
         }
-
         internal List<Steps> GetAll()
         {
             string sql = @"
