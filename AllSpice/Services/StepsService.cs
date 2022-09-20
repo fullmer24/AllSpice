@@ -23,7 +23,9 @@ namespace AllSpice.Services
             return steps;
         }
 
-
-
+        internal List<Steps> GetAll()
+        {
+            return _stepsRepo.GetAll();
+        }
     }
 }

@@ -31,6 +31,25 @@ namespace AllSpice.Repositories
             return steps;
         }
 
+        internal List<Steps> GetAll()
+        {
+            string sql = @"
+            SELECT
+            s.*,
+            a.*
+            FROM steps s
+            JOIN accounts a ON a.id = s.creatorId
+            ";
+            List<Steps> steps =
+            (List<Steps>)_db.Query<Steps, Account, Steps>(sql, (steps, account) =>
+            {
+                steps.Creator = account;
+                return steps;
+            }).ToList();
+            return steps;
+        }
+
+
 
 
     }
