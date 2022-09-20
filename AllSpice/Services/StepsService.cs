@@ -45,5 +45,16 @@ namespace AllSpice.Services
             _stepsRepo.Delete(id);
             return $"Deleted {steps.Body}";
         }
+        internal Steps Update(Steps update, string userId)
+        {
+            Steps original = GetById(update.Id);
+            if (original.CreatorId != userId)
+            {
+                throw new Exception("You can not edit that");
+            }
+            original.Position = update.Position ?? original.Position;
+            original.Body = update.Body ?? original.Body;
+            return _stepsRepo.Update(original);
+        }
     }
 }

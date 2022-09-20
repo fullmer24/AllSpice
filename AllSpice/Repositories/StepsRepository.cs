@@ -59,6 +59,17 @@ namespace AllSpice.Repositories
             Steps steps = _db.Query<Steps>(sql, new { id }).FirstOrDefault();
             return steps;
         }
+        internal Steps Update(Steps stepData)
+        {
+            string sql = @"
+            UPDATE steps SET
+            position = @position,
+            body = @body
+            WHERE id = @id
+            ";
+            _db.Execute(sql, stepData);
+            return stepData;
+        }
         internal List<Steps> GetAll()
         {
             string sql = @"
@@ -76,9 +87,5 @@ namespace AllSpice.Repositories
             }).ToList();
             return steps;
         }
-
-
-
-
     }
 }

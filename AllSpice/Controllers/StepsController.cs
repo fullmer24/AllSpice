@@ -76,5 +76,21 @@ namespace AllSpice.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [HttpPut("{id}")]
+        [Authorize]
+        public async Task<ActionResult<Steps>> Update(int id, [FromBody] Steps update)
+        {
+            try
+            {
+                Account user = await HttpContext.GetUserInfoAsync<Account>();
+                update.Id = id;
+                Steps steps = _stepsService.Update(update, user.Id);
+                return Ok(steps);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
