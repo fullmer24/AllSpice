@@ -42,5 +42,28 @@ CREATE TABLE IF NOT EXISTS steps(
 
 SELECT * FROM steps;
 
+CREATE TABLE IF NOT EXISTS favorites(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  recipeId INT NOT NULL,
+  accountId VARCHAR(255) NOT NULL,
+  FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE,
+  FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE
+)default charset utf8 COMMENT '';
 
-     
+-- NOTE create
+INSERT INTO favorites
+(recipeId, accountId)
+VALUES
+(3, '63238c2efe6a9c0c39e53393');
+
+-- NOTE get
+SELECT 
+  a.*,
+  f.*
+  FROM favorites f
+  JOIN accounts a ON a.id = f.accountId
+  WHERE f.recipeId = 3;
+
+-- NOTE delete
+  DELETE FROM favorites 
+  WHERE id = 2;
