@@ -66,4 +66,4 @@ SELECT
 
 -- NOTE delete
   DELETE FROM favorites 
-  WHERE id = 2;
+  WHERE favorites.id = 3;
