@@ -16,13 +16,16 @@ namespace AllSpice.Controllers
         private readonly RecipesService _recipesService;
         private readonly IngredientsService _ingredientsService;
         private readonly StepsService _stepsService;
+        private readonly FavoritesService _favoritesService;
 
-        public RecipesController(RecipesService recipesService, IngredientsService ingredientsService, StepsService stepsService)
+        public RecipesController(RecipesService recipesService, IngredientsService ingredientsService, StepsService stepsService, FavoritesService favoritesService)
         {
             _recipesService = recipesService;
             _ingredientsService = ingredientsService;
             _stepsService = stepsService;
+            _favoritesService = favoritesService;
         }
+
         [HttpGet]
         public ActionResult<List<Recipe>> GetAll()
         {

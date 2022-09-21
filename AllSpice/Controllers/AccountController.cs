@@ -14,10 +14,12 @@ namespace AllSpice.Controllers
     public class AccountController : ControllerBase
     {
         private readonly AccountService _accountService;
+        private readonly FavoritesService _favoritesService;
 
-        public AccountController(AccountService accountService)
+        public AccountController(AccountService accountService, FavoritesService favoritesService)
         {
             _accountService = accountService;
+            _favoritesService = favoritesService;
         }
 
         [HttpGet]
@@ -34,7 +36,19 @@ namespace AllSpice.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [HttpGet("{id}/favorites")]
+        [Authorize]
+        public ActionResult<List<FavoritesVM>> GetFavorites(string id)
+        {
+            try
+            {
+                List<FavoritesVM> favorites = _favoritesService.GetFavorites(id);
+                return Ok(favorites);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
-
-
 }

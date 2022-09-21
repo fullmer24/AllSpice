@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS favorites(
 INSERT INTO favorites
 (recipeId, accountId)
 VALUES
-(3, '63238c2efe6a9c0c39e53393');
+(5, '63238c2efe6a9c0c39e53393');
 
 -- NOTE get
 SELECT 
@@ -67,3 +67,11 @@ SELECT
 -- NOTE delete
   DELETE FROM favorites 
   WHERE favorites.id = 3;
+
+
+SELECT  
+  r.*,  
+  f.*
+FROM favorites f
+JOIN recipes r ON r.creatorId = f.accountId
+WHERE f.accountId = "63238c2efe6a9c0c39e53393";
